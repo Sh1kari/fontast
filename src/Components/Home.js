@@ -10,7 +10,7 @@ const getImg = url => {
   let newUrl;
 
   try {
-    newUrl = require(`../../assets/images/${url}.jpg`);
+    newUrl = require(`../assets/images/${url}.jpg`);
   } catch (err) {
     newUrl = '';
   }
@@ -27,7 +27,7 @@ class Home extends Component {
       '4',
       '8',
       '6',
-      '10',
+      '11',
       '2',
       '3',
       '10',

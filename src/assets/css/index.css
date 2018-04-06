@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Rubik', sans-serif;
+}
+
+h3 {
+    font-family: 'Anonymous Pro', monospace;
+}
+
+h4 {
+    font-family: 'Anonymous Pro', monospace;
+}
+
+/*font-family: 'Anonymous Pro', monospace;*/
+/*font-family: 'Rubik', sans-serif;*/
+/*font-family: 'Playfair Display', serif;*/

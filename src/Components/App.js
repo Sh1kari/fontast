@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
+import Footer from './Footer';
 
 const Collections = () => <p>Collections</p>;
 const Authors = () => <p>Authors</p>;
@@ -29,6 +30,8 @@ class App extends Component {
             <Route path="/login" component={Login} />
           </Switch>
         </main>
+
+        <Footer />
       </div>
     );
   }
