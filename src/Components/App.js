@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
+import Collections from '../Containers/Collections';
+import Authors from '../Containers/Authors';
 import Footer from './Footer';
 
-const Collections = () => <p>Collections</p>;
-const Authors = () => <p>Authors</p>;
 const Blog = () => <p>Blog</p>;
 const InReview = () => <p>In review</p>;
 const AddWork = () => <p>+ Add work</p>;

@@ -1,9 +1,40 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+@import '../../../node_modules/modern-normalize/modern-normalize.css';
+
+@font-face {
+  font-family: 'AnonymousPro';
+  src: local('AnonymousPro'),
+    url(../fonts/Anonymous_Pro/AnonymousPro-Bold.ttf) format('ttf');
+  font-weight: 600;
 }
 
-/*font-family: 'Anonymous Pro', monospace;*/
-/*font-family: 'Rubik', sans-serif;*/
-/*font-family: 'Playfair Display', serif;*/
+@font-face {
+  font-family: 'AnonymousPro';
+  src: local('AnonymousProBoldItalic'),
+    url(../fonts/Anonymous_Pro/AnonymousPro-BoldItalic.ttf) format('ttf');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'AnonymousPro';
+  src: local('AnonymousPro'),
+    url(../fonts/Anonymous_Pro/AnonymousPro-Regular.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'AnonymousPro';
+  src: local('AnonymousPro'),
+    url(../fonts/Anonymous_Pro/AnonymousPro-Italic.ttf) format('ttf');
+  font-style: italic;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'AnonymousPro';
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

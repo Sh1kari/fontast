@@ -7,7 +7,8 @@ import Toolbar from 'material-ui/Toolbar';
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontStyle: 'italic'
   },
   flex: {
     display: 'flex',
