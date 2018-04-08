@@ -9,8 +9,24 @@ const styles = {
     justifyContent: 'center',
     flexFlow: 'column'
   },
+  root: {
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    fontStretch: 'normal',
+    lineHeight: '1.5',
+    letterSpacing: 'normal',
+    background: 'white'
+  },
   margin: {
     margin: '0 10px'
+  },
+  footer: {
+    marginTop: '31px',
+    color: '#9b9b9b',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    lineHeight: '1.43',
+    fontSize: '.875rem'
   }
 };
 
@@ -19,7 +35,7 @@ class Footer extends Component {
     const { classes } = this.props;
 
     return (
-      <footer>
+      <footer className={classes.root}>
         <Toolbar className={classes.flex}>
           <div>
             <a href="https://www.facebook.com/" className={classes.margin}>
@@ -31,7 +47,9 @@ class Footer extends Component {
             </a>
           </div>
 
-          <div className={classes.flex}>@2018 Fontast</div>
+          <div className={classes.flex}>
+            <div className={classes.footer}>&#169;&#160;2018 Fontast</div>
+          </div>
         </Toolbar>
       </footer>
     );
