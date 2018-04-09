@@ -2,6 +2,7 @@
   "name": "masonry",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://194.67.208.233:8000",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
     "husky": "^0.14.3",

@@ -1,0 +1,14 @@
+.text-field__wrapper {
+  display: flex;
+}
+
+#text-field-input {
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.search {
+  position: relative;
+  right: 35px;
+  top: 14px;
+}
