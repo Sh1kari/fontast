@@ -5,6 +5,8 @@ import Home from './Home';
 import Collections from '../Containers/Collections';
 import Authors from '../Containers/Authors';
 import Footer from './Footer';
+import Modal from './Modals/Modal';
+import CreateAccount from './Modals/Forms/CreateAccount';
 
 const Blog = () => <p>Blog</p>;
 const InReview = () => <p>In review</p>;
@@ -13,10 +15,26 @@ const About = () => <p>About</p>;
 const Login = () => <p>Login</p>;
 
 class App extends Component {
+  state = {
+    modalIsOpen: false
+  };
+  onOpenModal = () => {
+    this.setState({
+      modalIsOpen: true
+    });
+  };
+  onCloseModal = () => {
+    this.setState({
+      modalIsOpen: false
+    });
+  };
   render() {
     return (
       <div>
-        <Header />
+        <Header
+          onOpenModal={this.onOpenModal}
+          onCloseModal={this.onCloseModal}
+        />
 
         <main>
           <Switch>
@@ -32,6 +50,9 @@ class App extends Component {
         </main>
 
         <Footer />
+        <Modal isOpen={this.state.modalIsOpen} onCloseModal={this.onCloseModal}>
+          <CreateAccount />
+        </Modal>
       </div>
     );
   }
