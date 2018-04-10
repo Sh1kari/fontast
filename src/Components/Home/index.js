@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
 import Masonry from 'react-masonry-component';
+import { getImg } from '../../helpers/index';
 import './Home.css';
 
 const masonryOptions = {
   transitionDuration: 0
-};
-
-const getImg = url => {
-  let newUrl;
-
-  try {
-    newUrl = require(`../assets/images/${url}.jpg`);
-  } catch (err) {
-    newUrl = '';
-  }
-
-  return newUrl;
 };
 
 class Home extends Component {

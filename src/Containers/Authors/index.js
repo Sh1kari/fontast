@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Toolbar from 'material-ui/Toolbar';
 import { withStyles } from 'material-ui/styles';
-// import SearchInput from '../../Components/SearchInput/index';
 import TextField from '../../Components/TextField';
 import Loader from '../../Components/Loader';
 import Error from '../../Components/Error';
@@ -102,7 +101,7 @@ class Authors extends Component {
 
   render() {
     const { classes } = this.props;
-    const { authors, isFetching, error, currentSorting } = this.state;
+    const { error, currentSorting } = this.state;
     const sortingStyles = [classes.flex, classes.justifyContentEnd].join(' ');
 
     const sorting = ['popular', 'new'];
@@ -115,7 +114,6 @@ class Authors extends Component {
       <Toolbar className={classes.root}>
         <Grid container className={classes.flex}>
           <Grid item xs={12} md={6}>
-            {/*<SearchInput placeholder="Search by name among 165 authors" />*/}
             <TextField
               id="search"
               name="name"

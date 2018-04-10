@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import SvgIcon from './SvgIcon';
+import SvgIcon from '../SvgIcon';
 
 const styles = {
   root: {
