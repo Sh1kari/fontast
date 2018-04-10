@@ -7,7 +7,8 @@ import { withStyles } from 'material-ui/styles';
 import TextField from '../../Components/TextField';
 import Loader from '../../Components/Loader';
 import Error from '../../Components/Error';
-import SvgIcon from '../../Components/SvgIcon';
+import Author from './Author';
+import Sorting from './Sorting';
 
 const styles = {
   root: {
@@ -26,44 +27,36 @@ const styles = {
     justifyContent: 'space-between',
     flexWrap: 'wrap'
   },
-  justifySpaceBetween: {
-    justifyContent: 'space-between'
-  },
-  wrap: {
-    flexWrap: 'wrap'
-  },
-  noWrap: {
-    flexWrap: 'nowrap'
-  },
-  headline: {
-    fontSize: '1.625rem',
-    fontWeight: 'bold',
-    fontStyle: 'normal',
-    fontStretch: 'normal',
-    lineHeight: '1.23',
-    letterSpacing: 'normal',
-    textAlign: 'left'
-  },
-  hr: {
-    height: '1px',
-    width: '100%'
+  justifyContentEnd: {
+    justifyContent: 'flex-end'
   }
 };
 
+const url = 'api/authors/';
+
 class Authors extends Component {
+  constructor(props) {
+    super(props);
+    this._onKeyPress = this._onKeyPress.bind(this);
+    this._onSortClick = this._onSortClick.bind(this);
+  }
+
   state = {
     authors: [],
-    isFetching: true,
-    error: null
+    isFetching: false,
+    error: null,
+    currentSorting: 'new'
   };
 
   componentDidMount() {
     this.setState({ isFetching: true });
-    this.fetch();
+    this.fetch(url);
   }
 
-  fetch() {
-    fetch('api/authors/')
+  fetch(url) {
+    this.setState({ isFetching: true });
+
+    fetch(url)
       .then(data => data.json())
       .then(authors => this.setState({ authors, isFetching: false }))
       .catch(({ message }) => {
@@ -71,14 +64,48 @@ class Authors extends Component {
       });
   }
 
-  render() {
-    const { classes } = this.props;
-    const { authors, isFetching, error } = this.state;
-    const authorStyles = [classes.flexSpaceBetween, classes.noWrap].join(' ');
+  _onKeyPress(e) {
+    if (e.key === 'Enter') {
+      const filter = e.target.name;
+      const value = e.target.value;
+      const fetchUrl = value ? `${url}?${filter}=${value}` : url;
 
-    if (isFetching && !authors.length) {
+      this.fetch(fetchUrl);
+    }
+  }
+
+  _onSortClick(e) {
+    const currentSorting = e.target.dataset.name;
+    this.setState({ currentSorting });
+  }
+
+  renderAuthors() {
+    const { isFetching, authors } = this.state;
+    const { classes } = this.props;
+
+    if (isFetching) {
       return <Loader />;
     }
+
+    if (!authors.length) {
+      return <h3>There is no authors.</h3>;
+    }
+
+    return (
+      <Grid item xs={12}>
+        <div className={classes.flexSpaceBetween}>
+          {authors.map(author => <Author key={author.name} {...author} />)}
+        </div>
+      </Grid>
+    );
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { authors, isFetching, error, currentSorting } = this.state;
+    const sortingStyles = [classes.flex, classes.justifyContentEnd].join(' ');
+
+    const sorting = ['popular', 'new'];
 
     if (error) {
       return <Error errorText={error} />;
@@ -87,49 +114,29 @@ class Authors extends Component {
     return (
       <Toolbar className={classes.root}>
         <Grid container className={classes.flex}>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={6}>
             {/*<SearchInput placeholder="Search by name among 165 authors" />*/}
             <TextField
               id="search"
+              name="name"
               placeholder="Search by name among 165 authors"
               fullWidth
+              onKeyPress={this._onKeyPress}
             />
           </Grid>
 
-          {isFetching ? (
-            <Loader />
-          ) : (
-            <Grid item xs={12}>
-              <div className={classes.flexSpaceBetween}>
-                {authors.map(({ name, works_count, likes_count }) => (
-                  <Grid
-                    key={`${name}-${works_count}`}
-                    item
-                    xs={12}
-                    md={5}
-                    lg={3}
-                  >
-                    <h3 className={classes.headline}>{name}</h3>
-                    <div className={authorStyles}>
-                      <div className="likes">
-                        <SvgIcon
-                          svgIcon="heart-black"
-                          fill="#1e1e1e"
-                          width="16px"
-                          height="15px"
-                          viewBox="0 0 100 1024"
-                        />&#160;
-                        {likes_count}
-                      </div>
-                      <hr className={classes.hr} />
+          <Grid item xs={12} className={sortingStyles}>
+            {sorting.map(sort => (
+              <Sorting
+                key={sort}
+                sort={sort}
+                currentSorting={currentSorting}
+                onClick={this._onSortClick}
+              />
+            ))}
+          </Grid>
 
-                      <div className="works">{works_count} works</div>
-                    </div>
-                  </Grid>
-                ))}
-              </div>
-            </Grid>
-          )}
+          {this.renderAuthors()}
         </Grid>
       </Toolbar>
     );
