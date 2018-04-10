@@ -10,6 +10,7 @@ const styles = {
     flexFlow: 'column'
   },
   root: {
+    marginTop: '100px',
     fontStyle: 'italic',
     fontWeight: 'bold',
     fontStretch: 'normal',

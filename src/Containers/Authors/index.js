@@ -8,7 +8,6 @@ import TextField from '../../Components/TextField';
 import Loader from '../../Components/Loader';
 import Error from '../../Components/Error';
 import SvgIcon from '../../Components/SvgIcon';
-import Paper from 'material-ui/Paper';
 
 const styles = {
   root: {
@@ -24,7 +23,17 @@ const styles = {
   },
   flexSpaceBetween: {
     display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
+  },
+  justifySpaceBetween: {
     justifyContent: 'space-between'
+  },
+  wrap: {
+    flexWrap: 'wrap'
+  },
+  noWrap: {
+    flexWrap: 'nowrap'
   },
   headline: {
     fontSize: '1.625rem',
@@ -65,8 +74,9 @@ class Authors extends Component {
   render() {
     const { classes } = this.props;
     const { authors, isFetching, error } = this.state;
+    const authorStyles = [classes.flexSpaceBetween, classes.noWrap].join(' ');
 
-    if (isFetching) {
+    if (isFetching && !authors.length) {
       return <Loader />;
     }
 
@@ -86,30 +96,40 @@ class Authors extends Component {
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <div className={classes.flexSpaceBetween}>
-              {authors.map(({ name, works_count, likes_count }) => (
-                <Grid key={`${name}-${works_count}`} item xs={12} md={3}>
-                  <h3 className={classes.headline}>{name}</h3>
-                  <div className={classes.flexSpaceBetween}>
-                    <div className="likes">
-                      <SvgIcon
-                        svgIcon="heart-black"
-                        fill="#1e1e1e"
-                        width="16px"
-                        height="15px"
-                        viewBox="0 0 100 1024"
-                      />&#160;
-                      {likes_count}
-                    </div>
-                    <hr className={classes.hr} />
+          {isFetching ? (
+            <Loader />
+          ) : (
+            <Grid item xs={12}>
+              <div className={classes.flexSpaceBetween}>
+                {authors.map(({ name, works_count, likes_count }) => (
+                  <Grid
+                    key={`${name}-${works_count}`}
+                    item
+                    xs={12}
+                    md={5}
+                    lg={3}
+                  >
+                    <h3 className={classes.headline}>{name}</h3>
+                    <div className={authorStyles}>
+                      <div className="likes">
+                        <SvgIcon
+                          svgIcon="heart-black"
+                          fill="#1e1e1e"
+                          width="16px"
+                          height="15px"
+                          viewBox="0 0 100 1024"
+                        />&#160;
+                        {likes_count}
+                      </div>
+                      <hr className={classes.hr} />
 
-                    <div className="works">{works_count} works</div>
-                  </div>
-                </Grid>
-              ))}
-            </div>
-          </Grid>
+                      <div className="works">{works_count} works</div>
+                    </div>
+                  </Grid>
+                ))}
+              </div>
+            </Grid>
+          )}
         </Grid>
       </Toolbar>
     );
