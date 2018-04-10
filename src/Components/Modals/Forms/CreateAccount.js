@@ -12,18 +12,12 @@ class CreateAccount extends Component {
     name: '',
     password: ''
   };
-  onChangeMail = e => {
-    this.setState({ email: e.target.value });
-  };
-  onChangeName = e => {
-    this.setState({ name: e.target.value });
-  };
-  onChangePassword = e => {
-    this.setState({ password: e.target.value });
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
-    console.log('clicked submit!');
-    console.log(e);
+    console.log('state out');
+    console.log(this.state);
     e.preventDefault();
   };
   render() {
@@ -31,12 +25,18 @@ class CreateAccount extends Component {
     const { email, name, password } = this.state;
     return (
       <FormStyled onSubmit={this.handleSubmit}>
-        <input type="email" value={email} onChange={this.onChangeMail} />
-        <input type="text" value={name} onChange={this.onChangeName} />
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={this.onChange}
+        />
+        <input type="text" name="name" value={name} onChange={this.onChange} />
         <input
           type="password"
+          name="password"
           value={password}
-          onChange={this.onChangePassword}
+          onChange={this.onChange}
         />
         <input type="submit" />
       </FormStyled>
