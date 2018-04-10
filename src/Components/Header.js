@@ -47,7 +47,7 @@ class Header extends Component {
               <div>
                 <NavLink to="/inReview">In review</NavLink>&nbsp;
                 <NavLink to="/blog" className={classes.margin}>
-                  Blog
+                  Huy
                 </NavLink>
               </div>
             </div>
