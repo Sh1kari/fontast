@@ -4,7 +4,7 @@ import Header from './Header';
 import Home from './Home';
 import Collections from '../Containers/Collections';
 import Authors from '../Containers/Authors';
-import Footer from './Footer';
+import Footer from './Main/Footer';
 import Modal from './Modals/Modal';
 import CreateAccount from './Modals/Forms/CreateAccount';
 
@@ -31,10 +31,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header
-          onOpenModal={this.onOpenModal}
-          onCloseModal={this.onCloseModal}
-        />
+        <Header onOpenModal={this.onOpenModal} />
 
         <main>
           <Switch>

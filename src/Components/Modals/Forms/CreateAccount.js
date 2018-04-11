@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+// import Search from 'Components/SearchInput';
+import TextField from 'Components/TextField';
 
 const FormStyled = styled.form`
   display: flex;
@@ -27,14 +29,19 @@ class CreateAccount extends Component {
     const { email, name, password } = this.state;
     return (
       <FormStyled onSubmit={this.handleSubmit}>
-        <input
+        <TextField
           type="email"
           name="email"
           value={email}
           onChange={this.onChange}
         />
-        <input type="text" name="name" value={name} onChange={this.onChange} />
-        <input
+        <TextField
+          type="text"
+          name="name"
+          value={name}
+          onChange={this.onChange}
+        />
+        <TextField
           type="password"
           name="password"
           value={password}
