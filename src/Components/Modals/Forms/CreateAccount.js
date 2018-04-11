@@ -8,48 +8,19 @@ const FormStyled = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-class CreateAccount extends Component {
-  state = {
-    email: '',
-    name: '',
-    password: ''
-  };
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  handleSubmit = e => {
-    const { onCloseModal } = this.props;
-    console.log('state out');
-    console.log(this.state);
-    onCloseModal();
-    e.preventDefault();
-  };
-  render() {
-    const { classes } = this.props;
-    const { email, name, password } = this.state;
-    return (
-      <FormStyled onSubmit={this.handleSubmit}>
-        <TextField
-          type="email"
-          name="email"
-          value={email}
-          onChange={this.onChange}
-        />
-        <TextField
-          type="text"
-          name="name"
-          value={name}
-          onChange={this.onChange}
-        />
-        <TextField
-          type="password"
-          name="password"
-          value={password}
-          onChange={this.onChange}
-        />
-        <input type="submit" />
-      </FormStyled>
-    );
-  }
-}
+const CreateAccount = ({ email, name, password, onChange, submitForm }) => {
+  return (
+    <FormStyled onSubmit={submitForm}>
+      <TextField type="email" name="email" value={email} onChange={onChange} />
+      <TextField type="text" name="name" value={name} onChange={onChange} />
+      <TextField
+        type="password"
+        name="password"
+        value={password}
+        onChange={onChange}
+      />
+      <input type="submit" />
+    </FormStyled>
+  );
+};
 export default CreateAccount;
