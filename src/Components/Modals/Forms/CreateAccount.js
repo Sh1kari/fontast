@@ -16,8 +16,10 @@ class CreateAccount extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
+    const { onCloseModal } = this.props;
     console.log('state out');
     console.log(this.state);
+    onCloseModal();
     e.preventDefault();
   };
   render() {

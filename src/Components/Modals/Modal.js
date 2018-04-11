@@ -49,7 +49,9 @@ const IconRow = styled.div`
 
 const customStyles = {
   overlay: {
-    position: 'absolute',
+    position: 'fixed',
+    display: 'flex',
+    alignItems: 'center',
     top: 0,
     bottom: 0,
     right: 0,
@@ -61,9 +63,9 @@ const customStyles = {
     maxWidth: '60vh',
     minWidth: '300px',
     minHeight: '500px',
+    minHeight: '300px',
+    maxHeight: '500px',
     border: 'none',
-    height: '100%',
-    opacity: 1,
     backgroundColor: 'white',
     marginLeft: 'auto',
     marginRight: 'auto'
@@ -71,7 +73,7 @@ const customStyles = {
 };
 
 const ModalScreen = ({ isOpen, onCloseModal, children }) => (
-  <Modal isOpen={isOpen} style={customStyles}>
+  <Modal isOpen={isOpen} style={customStyles} onRequestClose={onCloseModal}>
     <Header>
       <Title>Join with</Title>
       <IconRow>
@@ -90,7 +92,6 @@ const ModalScreen = ({ isOpen, onCloseModal, children }) => (
       </IconRow>
     </Header>
     <Content>{children}</Content>
-    <button onClick={onCloseModal} />
   </Modal>
 );
 
