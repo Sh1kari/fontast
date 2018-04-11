@@ -34,7 +34,7 @@ const Author = props => {
   const authorStyles = [classes.flexSpaceBetween, classes.noWrap].join(' ');
 
   return (
-    <Grid item xs={12} md={5} lg={3}>
+    <Grid item xs={12} md={6} lg={4}>
       <h3 className={classes.headline}>{name}</h3>
       <div className={authorStyles}>
         <div className="likes">
