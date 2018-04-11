@@ -93,7 +93,9 @@ class Authors extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.flexSpaceBetween}>
-          {authors.map(author => <Author key={author.name} {...author} />)}
+          {authors.map((author, index) => (
+            <Author key={author.name} {...author} authorIndex={index} />
+          ))}
         </div>
       </Grid>
     );
