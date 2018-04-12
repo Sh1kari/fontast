@@ -32,6 +32,10 @@ const styles = {
 };
 
 const url = 'api/authors/';
+const sorting = [
+  { name: 'likes_count', displayName: 'popular' },
+  { name: 'created_at', displayName: 'new' }
+];
 
 class Authors extends Component {
   constructor(props) {
@@ -49,13 +53,16 @@ class Authors extends Component {
 
   componentDidMount() {
     this.setState({ isFetching: true });
-    this.fetch(url);
+    this.fetch();
   }
 
-  fetch(url) {
+  fetch(currentSorting) {
     this.setState({ isFetching: true });
+    const sort = currentSorting || this.state.currentSorting;
+    const sortingUrl = sorting.find(({ displayName }) => displayName === sort)
+      .name;
 
-    fetch(url)
+    fetch(`${url}?ordering=${sortingUrl}`)
       .then(data => data.json())
       .then(authors => this.setState({ authors, isFetching: false }))
       .catch(({ message }) => {
@@ -75,7 +82,10 @@ class Authors extends Component {
 
   _onSortClick(e) {
     const currentSorting = e.target.dataset.name;
-    this.setState({ currentSorting });
+    if (this.state.currentSorting !== currentSorting) {
+      this.fetch(currentSorting);
+      this.setState({ currentSorting });
+    }
   }
 
   renderAuthors() {
@@ -106,8 +116,6 @@ class Authors extends Component {
     const { error, currentSorting } = this.state;
     const sortingStyles = [classes.flex, classes.justifyContentEnd].join(' ');
 
-    const sorting = ['popular', 'new'];
-
     if (error) {
       return <Error errorText={error} />;
     }
@@ -126,10 +134,10 @@ class Authors extends Component {
           </Grid>
 
           <Grid item xs={12} className={sortingStyles}>
-            {sorting.map(sort => (
+            {sorting.map(({ displayName }) => (
               <Sorting
-                key={sort}
-                sort={sort}
+                key={displayName}
+                sort={displayName}
                 currentSorting={currentSorting}
                 onClick={this._onSortClick}
               />

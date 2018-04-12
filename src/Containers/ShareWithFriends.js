@@ -9,7 +9,7 @@ import {
   TwitterShareButton
 } from 'react-share';
 
-const styles = {
+const styles = theme => ({
   flex: {
     display: 'flex',
     justifyContent: 'center',
@@ -21,8 +21,17 @@ const styles = {
     fontSize: '1rem',
     border: 'solid 1px #1e1e1e',
     marginLeft: '10px'
+  },
+  countButton: {
+    background: 'linear-gradient(to right, white 70% , black 30%)'
+  },
+  rightIcon: {
+    paddingLeft: '35px',
+    position: 'relative',
+    left: '7px',
+    color: '#fff'
   }
-};
+});
 
 const buttons = {
   facebook: {
@@ -49,12 +58,23 @@ class ShareWithFriends extends Component {
           {Object.keys(buttons).map(name => {
             const ShareButton = buttons[name].button;
             const ShareCount = buttons[name].count;
+            const buttonStyle = ShareCount
+              ? [classes.button, classes.countButton].join(' ')
+              : classes.button;
 
             return (
               <ShareButton key={name} url={shareUrl}>
-                <Button size="large" className={classes.button}>
+                <Button size="large" className={buttonStyle}>
                   {name}
-                  {counter && ShareCount && <ShareCount url={shareUrl} />}
+                  {/*{counter && ShareCount && <ShareCount url={shareUrl} />}*/}
+                  {ShareCount && (
+                    <div>
+                      <ShareCount
+                        url={shareUrl}
+                        className={classes.rightIcon}
+                      />
+                    </div>
+                  )}
                 </Button>
               </ShareButton>
             );
