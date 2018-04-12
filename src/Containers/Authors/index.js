@@ -53,16 +53,19 @@ class Authors extends Component {
 
   componentDidMount() {
     this.setState({ isFetching: true });
-    this.fetch();
+    this.fetch({});
   }
 
-  fetch(currentSorting) {
-    this.setState({ isFetching: true });
-    const sort = currentSorting || this.state.currentSorting;
-    const sortingUrl = sorting.find(({ displayName }) => displayName === sort)
-      .name;
+  fetch(props) {
+    const sort = props.currentSorting || this.state.currentSorting;
+    const sortingUrl = sorting.find(s => s.displayName === sort).name;
 
-    fetch(`${url}?ordering=${sortingUrl}`)
+    let currentUrl = `${url}?ordering=${sortingUrl}`;
+    props.filter && (currentUrl += `&${props.filter}`);
+
+    this.setState({ isFetching: true });
+
+    fetch(currentUrl)
       .then(data => data.json())
       .then(authors => this.setState({ authors, isFetching: false }))
       .catch(({ message }) => {
@@ -74,16 +77,14 @@ class Authors extends Component {
     if (e.key === 'Enter') {
       const filter = e.target.name;
       const value = e.target.value;
-      const fetchUrl = value ? `${url}?${filter}=${value}` : url;
-
-      this.fetch(fetchUrl);
+      this.fetch({ filter: `${filter}=${value}` });
     }
   }
 
   _onSortClick(e) {
     const currentSorting = e.target.dataset.name;
     if (this.state.currentSorting !== currentSorting) {
-      this.fetch(currentSorting);
+      this.fetch({ currentSorting });
       this.setState({ currentSorting });
     }
   }

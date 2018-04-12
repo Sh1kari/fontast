@@ -5,6 +5,7 @@ import routes from '../routes';
 
 class App extends Component {
   render() {
+    console.log('props', this.props);
     return (
       <div>
         <Header />
@@ -16,5 +17,10 @@ class App extends Component {
     );
   }
 }
+
+// if (process.env.NODE_ENV !== 'production') {
+//   const {whyDidYouUpdate} = require('why-did-you-update')
+//   whyDidYouUpdate(React)
+// }
 
 export default App;
