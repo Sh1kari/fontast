@@ -24,7 +24,6 @@ const routes = () => {
       <Route path="/inReview" component={InReview} />
       <Route path="/addWork" component={AddWork} />
       <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
     </Switch>
   );
 };
