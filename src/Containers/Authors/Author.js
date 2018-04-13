@@ -75,6 +75,7 @@ class Author extends Component {
                   key={`${id}-${content}`}
                   data-id={id}
                   src={`http://194.67.208.233:8000/media/${image_original}`}
+                  alt={`img-${name}`}
                   className={`${wrapperIndexClass}${index}`}
                   onClick={this.onImageClick}
                 />

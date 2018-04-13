@@ -9,6 +9,8 @@ import {
   TwitterShareButton
 } from 'react-share';
 
+import './ShareWithFriends.css';
+
 const styles = theme => ({
   flex: {
     display: 'flex',
@@ -21,9 +23,6 @@ const styles = theme => ({
     fontSize: '1rem',
     border: 'solid 1px #1e1e1e',
     marginLeft: '10px'
-  },
-  countButton: {
-    background: 'linear-gradient(to right, white 70% , black 30%)'
   },
   rightIcon: {
     paddingLeft: '35px',
@@ -58,23 +57,32 @@ class ShareWithFriends extends Component {
           {Object.keys(buttons).map(name => {
             const ShareButton = buttons[name].button;
             const ShareCount = buttons[name].count;
-            const buttonStyle = ShareCount
-              ? [classes.button, classes.countButton].join(' ')
-              : classes.button;
+            const buttonStyle =
+              counter && ShareCount
+                ? [classes.button, 'count-button'].join(' ')
+                : classes.button;
 
             return (
               <ShareButton key={name} url={shareUrl}>
                 <Button size="large" className={buttonStyle}>
                   {name}
-                  {/*{counter && ShareCount && <ShareCount url={shareUrl} />}*/}
-                  {ShareCount && (
-                    <div>
-                      <ShareCount
-                        url={shareUrl}
-                        className={classes.rightIcon}
-                      />
-                    </div>
-                  )}
+                  {counter &&
+                    ShareCount && (
+                      <div>
+                        <ShareCount
+                          url={shareUrl}
+                          className={classes.rightIcon}
+                        />
+                      </div>
+                    )}
+                  {/*{ShareCount && (*/}
+                  {/*<div>*/}
+                  {/*<ShareCount*/}
+                  {/*url={shareUrl}*/}
+                  {/*className={classes.rightIcon}*/}
+                  {/*/>*/}
+                  {/*</div>*/}
+                  {/*)}*/}
                 </Button>
               </ShareButton>
             );
