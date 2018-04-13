@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Main/Header';
 import Footer from './Main/Footer';
+
 import routes from '../routes';
 import Modal from './Modals/Modal';
 import CreateAccount from './Modals/Forms/CreateAccount';
