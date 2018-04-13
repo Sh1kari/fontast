@@ -1,11 +1,12 @@
 import React, { type ChildrenArray, type Element } from 'react';
 import styled from 'styled-components';
-import FontAwesome from 'react-fontawesome';
+// import FontAwesome from 'react-fontawesome';
 import Modal from 'react-modal';
+import SvgIcon from '../SvgIcon';
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-// import faFacebook from '@fortawesome/fontawesome/coffee'
-import './fontawesome.css';
-import 'font-awesome/css/font-awesome.min.css';
+// // import faFacebook from '@fortawesome/fontawesome/coffee'
+// import './fontawesome.css';
+// import 'font-awesome/css/font-awesome.min.css';
 // faFacebook
 const Header = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const IconCyrcle = styled.div`
   align-items: center;
   cursor: pointer;
   border-radius: 60%;
-  background-color: ${props => props.BColor};
+  background-color: ${props => props.BColor || '#ffffff'};
 `;
 
 const Content = styled.div`
@@ -77,17 +78,14 @@ const ModalScreen = ({ isOpen, onCloseModal, children }) => (
     <Header>
       <Title>Join with</Title>
       <IconRow>
-        <IconCyrcle BColor={'#3b5998'}>
-          <i className="fa fa-facebook" />
-        </IconCyrcle>
-        <IconCyrcle BColor={'#55acee'}>
-          <i className="fa fa-twitter" />
-        </IconCyrcle>
-        <IconCyrcle BColor={'#dc4e41'}>
-          <i className="fa fa-google-plus-g" />
-        </IconCyrcle>
         <IconCyrcle BColor={'#4d76a1'}>
-          <i className="fa fa-coffee" />
+          <SvgIcon
+            svgIcon="vk"
+            fill="#ffffff"
+            width="22px"
+            height="22px"
+            viewBox="0 0 24 24"
+          />
         </IconCyrcle>
       </IconRow>
     </Header>
