@@ -1,0 +1,7 @@
+.count-button {
+  background: linear-gradient(to right, white 70%, black 30%);
+}
+
+.count-button:hover {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.02) 70%, black 30%);
+}

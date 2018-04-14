@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Components/Home/index';
 import Collections from './Containers/Collections';
 import Authors from './Containers/Authors';
+import Author from './Containers/Author';
 import About from './Components/About';
 
 const Blog = () => <p>Blog</p>;
@@ -15,7 +16,10 @@ const routes = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/collections" component={Collections} />
+
       <Route path="/authors" component={Authors} />
+      <Route path="/author/:id" component={Author} />
+
       <Route path="/blog" component={Blog} />
       <Route path="/inReview" component={InReview} />
       <Route path="/addWork" component={AddWork} />

@@ -1,34 +1,94 @@
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
+import {
+  FacebookShareButton,
+  FacebookShareCount,
+  TwitterShareButton
+} from 'react-share';
 
-const styles = {
+import './ShareWithFriends.css';
+
+const styles = theme => ({
+  flex: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginTop: '10px'
+  },
   button: {
     textTransform: 'capitalize',
     fontSize: '1rem',
     border: 'solid 1px #1e1e1e',
     marginLeft: '10px'
+  },
+  rightIcon: {
+    paddingLeft: '35px',
+    position: 'relative',
+    left: '7px',
+    color: '#fff'
+  }
+});
+
+const buttons = {
+  facebook: {
+    button: FacebookShareButton,
+    count: FacebookShareCount
+  },
+  twitter: {
+    button: TwitterShareButton,
+    count: undefined
   }
 };
 
 class ShareWithFriends extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, counter = false } = this.props;
+    const { protocol, port, hostname, pathname } = window.location;
 
-    const buttons = ['facebook', 'twitter'];
+    const shareUrl = `${protocol}//${hostname}:${port}${pathname}`;
 
     return (
-      <div>
+      <Grid item xs={12}>
         <h4>Share with your friends</h4>
-        {buttons.map(button => {
-          return (
-            <Button size="large" className={classes.button}>
-              {button}
-            </Button>
-          );
-        })}
-      </div>
+        <div className={classes.flex}>
+          {Object.keys(buttons).map(name => {
+            const ShareButton = buttons[name].button;
+            const ShareCount = buttons[name].count;
+            const buttonStyle =
+              counter && ShareCount
+                ? [classes.button, 'count-button'].join(' ')
+                : classes.button;
+
+            return (
+              <ShareButton key={name} url={shareUrl}>
+                <Button size="large" className={buttonStyle}>
+                  {name}
+                  {counter &&
+                    ShareCount && (
+                      <div>
+                        <ShareCount
+                          url={shareUrl}
+                          className={classes.rightIcon}
+                        />
+                      </div>
+                    )}
+                  {/*{ShareCount && (*/}
+                  {/*<div>*/}
+                  {/*<ShareCount*/}
+                  {/*url={shareUrl}*/}
+                  {/*className={classes.rightIcon}*/}
+                  {/*/>*/}
+                  {/*</div>*/}
+                  {/*)}*/}
+                </Button>
+              </ShareButton>
+            );
+          })}
+        </div>
+      </Grid>
     );
   }
 }

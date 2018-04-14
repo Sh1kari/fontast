@@ -32,6 +32,10 @@ const styles = {
 };
 
 const url = 'api/authors/';
+const sorting = [
+  { name: 'likes_count', displayName: 'popular' },
+  { name: 'created_at', displayName: 'new' }
+];
 
 class Authors extends Component {
   constructor(props) {
@@ -49,13 +53,19 @@ class Authors extends Component {
 
   componentDidMount() {
     this.setState({ isFetching: true });
-    this.fetch(url);
+    this.fetch({});
   }
 
-  fetch(url) {
+  fetch(props) {
+    const sort = props.currentSorting || this.state.currentSorting;
+    const sortingUrl = sorting.find(s => s.displayName === sort).name;
+
+    let currentUrl = `${url}?ordering=${sortingUrl}`;
+    props.filter && (currentUrl += `&${props.filter}`);
+
     this.setState({ isFetching: true });
 
-    fetch(url)
+    fetch(currentUrl)
       .then(data => data.json())
       .then(authors => this.setState({ authors, isFetching: false }))
       .catch(({ message }) => {
@@ -67,15 +77,16 @@ class Authors extends Component {
     if (e.key === 'Enter') {
       const filter = e.target.name;
       const value = e.target.value;
-      const fetchUrl = value ? `${url}?${filter}=${value}` : url;
-
-      this.fetch(fetchUrl);
+      this.fetch({ filter: `${filter}=${value}` });
     }
   }
 
   _onSortClick(e) {
     const currentSorting = e.target.dataset.name;
-    this.setState({ currentSorting });
+    if (this.state.currentSorting !== currentSorting) {
+      this.fetch({ currentSorting });
+      this.setState({ currentSorting });
+    }
   }
 
   renderAuthors() {
@@ -93,7 +104,9 @@ class Authors extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.flexSpaceBetween}>
-          {authors.map(author => <Author key={author.name} {...author} />)}
+          {authors.map((author, index) => (
+            <Author key={author.name} {...author} authorIndex={index} />
+          ))}
         </div>
       </Grid>
     );
@@ -103,8 +116,6 @@ class Authors extends Component {
     const { classes } = this.props;
     const { error, currentSorting } = this.state;
     const sortingStyles = [classes.flex, classes.justifyContentEnd].join(' ');
-
-    const sorting = ['popular', 'new'];
 
     if (error) {
       return <Error errorText={error} />;
@@ -124,10 +135,10 @@ class Authors extends Component {
           </Grid>
 
           <Grid item xs={12} className={sortingStyles}>
-            {sorting.map(sort => (
+            {sorting.map(({ displayName }) => (
               <Sorting
-                key={sort}
-                sort={sort}
+                key={displayName}
+                sort={displayName}
                 currentSorting={currentSorting}
                 onClick={this._onSortClick}
               />
