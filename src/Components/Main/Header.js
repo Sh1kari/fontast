@@ -30,7 +30,7 @@ const styles = {
 
 class Header extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, onOpenModal } = this.props;
 
     return (
       <div className={classes.root}>
@@ -72,9 +72,7 @@ class Header extends Component {
               </div>
               <div>
                 <NavLink to="/about">About</NavLink>&nbsp;
-                <NavLink to="/login" className={classes.margin}>
-                  Login
-                </NavLink>
+                <div onClick={onOpenModal}>Login</div>
               </div>
             </div>
           </Toolbar>

@@ -2,15 +2,8 @@ import React, { type ChildrenArray, type Element } from 'react';
 import styled from 'styled-components';
 // import FontAwesome from 'react-fontawesome';
 import Modal from 'react-modal';
-// import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-// import faFacebook from '@fortawesome/fontawesome/coffee'
-// import FontIcon from 'material-ui/FontIcon';
-// import {blue500, red500, greenA200} from 'material-ui/styles/colors';
-// import './fontawesome.css';
-// import 'font-awesome/css/font-awesome.min.css';
-import FontIcon from 'material-ui/FontIcon';
-// import Vk from 'material-ui-icons/Brand/vkontakte';
-// faFacebook
+import SvgIcon from 'Components/SvgIcon';
+
 const Header = styled.div`
   display: flex;
   align-items: center;
@@ -81,17 +74,41 @@ const ModalScreen = ({ isOpen, onCloseModal, children }) => (
     <Header>
       <Title>Join with</Title>
       <IconRow>
-        {/* <IconCyrcle BColor={'#3b5998'}>
-          <i className="fa fa-facebook" />
+        <IconCyrcle BColor={'#3b5998'}>
+          <SvgIcon
+            svgIcon="facebook"
+            fill="#ffffff"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          />
         </IconCyrcle>
         <IconCyrcle BColor={'#55acee'}>
-          <i className="fa fa-twitter" />
+          <SvgIcon
+            svgIcon="twitter"
+            fill="#ffffff"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          />
         </IconCyrcle>
         <IconCyrcle BColor={'#dc4e41'}>
-          <i className="fa fa-google-plus-g" />
-        </IconCyrcle> */}
+          <SvgIcon
+            svgIcon="google-plus"
+            fill="#ffffff"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          />
+        </IconCyrcle>
         <IconCyrcle BColor={'#4d76a1'}>
-          <FontIcon>vk</FontIcon>
+          <SvgIcon
+            svgIcon="vk"
+            fill="#ffffff"
+            width="24px"
+            height="24px"
+            viewBox="0 0 24 24"
+          />
         </IconCyrcle>
       </IconRow>
     </Header>
