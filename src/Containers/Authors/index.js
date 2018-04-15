@@ -31,7 +31,7 @@ const styles = {
   }
 };
 
-const url = 'api/authors/';
+const url = '/api/authors/';
 const sorting = [
   { name: 'likes_count', displayName: 'popular' },
   { name: 'created_at', displayName: 'new' }

@@ -45,8 +45,8 @@ class Author extends Component {
   }
 
   onImageClick(e) {
-    console.log('1111', this.props);
-    this.props.history.push(`/author/${e.target.dataset.id}`);
+    const { authorid, workid } = e.target.dataset;
+    this.props.history.push(`/author/${authorid}/work/${workid}`);
   }
 
   render() {
@@ -70,10 +70,12 @@ class Author extends Component {
         <div className={classes.worksWrapper}>
           <div>
             {last_works.map(({ content, id, image_original }, index) => {
+              console.log('11111', last_works, this.props);
               return (
                 <img
                   key={`${id}-${content}`}
-                  data-id={id}
+                  data-workid={id}
+                  data-authorid={this.props.id}
                   src={`http://194.67.208.233:8000/media/${image_original}`}
                   alt={`img-${name}`}
                   className={`${wrapperIndexClass}${index}`}

@@ -18,7 +18,7 @@ const routes = () => {
       <Route path="/collections" component={Collections} />
 
       <Route path="/authors" component={Authors} />
-      <Route path="/author/:id" component={Author} />
+      <Route path="/author/:authorId/work/:workId" component={Author} />
 
       <Route path="/blog" component={Blog} />
       <Route path="/inReview" component={InReview} />
