@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 // import Search from 'Components/SearchInput';
 import TextField from 'Components/TextField';
+import { FormStyled, FormFooter } from '../Common/index';
 
-const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 const CreateAccount = ({ email, name, password, onChange, submitForm }) => {
   return (
     <FormStyled onSubmit={submitForm}>
@@ -19,7 +15,12 @@ const CreateAccount = ({ email, name, password, onChange, submitForm }) => {
         value={password}
         onChange={onChange}
       />
+      <button onClick={submitForm}>test</button>
       <input type="submit" />
+      <FormFooter>
+        Creating an account means you’re okay with our Terms of Service, Privacy
+        Policy
+      </FormFooter>
     </FormStyled>
   );
 };

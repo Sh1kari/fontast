@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Main/Header';
 import Footer from './Main/Footer';
 import routes from '../routes';
-import CreateAccount from './Modals/Forms/CreateAccount';
+import CreateAccount from '../Containers/Modals/Forms/CreateAccount';
 import Modal from './Modals/Modal';
 
 class App extends Component {
