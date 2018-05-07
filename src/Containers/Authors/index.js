@@ -130,6 +130,7 @@ class Authors extends Component {
               name="name"
               placeholder="Search by name among 165 authors"
               fullWidth
+              searchIcon
               onKeyPress={this._onKeyPress}
             />
           </Grid>
