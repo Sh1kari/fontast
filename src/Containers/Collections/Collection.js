@@ -36,7 +36,12 @@ const styles = {
 
 const Collection = props => {
   console.log('props', props);
-  const { classes, name, year, date, works_count } = props;
+  const {
+    classes,
+    name,
+    year
+    // date, works_count
+  } = props;
 
   return (
     <Grid item xs={12} md={5} lg={3} className={classes.root}>

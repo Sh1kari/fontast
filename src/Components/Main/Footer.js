@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from 'material-ui/Toolbar';
 import { withStyles } from 'material-ui/styles';
@@ -31,7 +31,7 @@ const styles = {
   }
 };
 
-class Footer extends Component {
+class Footer extends PureComponent {
   render() {
     const { classes } = this.props;
 

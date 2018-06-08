@@ -3,15 +3,28 @@ import TextField from 'material-ui/TextField';
 import SearchIcon from '../../assets/svg/search';
 import './index.css';
 
+import { withStyles } from 'material-ui/styles';
+
+const styles = {
+  label: {
+    color: 'red',
+    ':focus': {
+      color: 'green'
+    }
+  }
+};
+
 class TextFieldComponent extends Component {
   render() {
     const {
       className = 'text-field',
       name,
+      label,
       placeholder,
       fullWidth = false,
       onChange,
-      onKeyPress
+      onKeyPress,
+      searchIcon = false
     } = this.props;
 
     return (
@@ -19,9 +32,13 @@ class TextFieldComponent extends Component {
         <TextField
           id="text-field-input"
           name={name}
+          label={label}
           placeholder={placeholder}
           className={className}
           fullWidth={fullWidth}
+          InputLabelProps={{
+            className: 'label'
+          }}
           InputProps={{
             disableUnderline: true,
             onChange,
@@ -29,12 +46,14 @@ class TextFieldComponent extends Component {
           }}
         />
 
-        <div className="search">
-          <SearchIcon />
-        </div>
+        {searchIcon && (
+          <div className="search">
+            <SearchIcon />
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default TextFieldComponent;
+export default withStyles(styles)(TextFieldComponent);

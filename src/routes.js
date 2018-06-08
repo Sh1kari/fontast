@@ -1,13 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Components/Home/index';
-import Collections from './Containers/Collections';
-import Authors from './Containers/Authors';
 import About from './Components/About';
+import { AddWork, Collections, Authors, Author } from './Containers';
 
 const Blog = () => <p>Blog</p>;
 const InReview = () => <p>In review</p>;
-const AddWork = () => <p>+ Add work</p>;
 const Login = () => <p>Login</p>;
 
 const routes = () => {
@@ -15,7 +13,12 @@ const routes = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/collections" component={Collections} />
+
       <Route path="/authors" component={Authors} />
+      <Route path="/author/:authorId/work/:workId" component={Author} />
+
+      <Route path="/addWork" component={AddWork} />
+
       <Route path="/blog" component={Blog} />
       <Route path="/inReview" component={InReview} />
       <Route path="/addWork" component={AddWork} />

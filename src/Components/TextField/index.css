@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.text-field__wrapper .text-input label {
+  padding: 11px 0 0 20px;
+}
+
 #text-field-input {
   border: 1px solid black;
   padding: 15px;
