@@ -2,12 +2,15 @@
   "name": "masonry",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://194.67.208.233:8000/",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
+    "cross-env": "^5.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
     "material-ui": "^1.0.0-beta.40",
     "modern-normalize": "^0.4.0",
+    "styled-components": "^3.3.2",
     "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
@@ -27,7 +30,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "react-scripts start",
+    "start": "cross-env NODE_PATH=src/ react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

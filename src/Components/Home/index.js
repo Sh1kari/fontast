@@ -13,38 +13,27 @@ const masonryOptions = {
   transitionDuration: 0
 };
 
-class Home extends Component {
-  render() {
-    const childElements = [
-      '7',
-      '5',
-      '9',
-      '4',
-      '8',
-      '6',
-      '11',
-      '2',
-      '3',
-      '10',
-      '1'
-    ].map(element => (
-      <li key={element} className="image-element-class">
-        <img src={getImg(element)} alt={element} />
-      </li>
-    ));
-
+const Home = ({ fonts }) => {
+  const childElements = fonts.map(font => {
+    const { image } = font;
     return (
-      <Masonry
-        className={'my-gallery-class'}
-        elementType={'ul'}
-        options={masonryOptions}
-        disableImagesLoaded={false}
-        updateOnEachImageLoad={false}
-      >
-        {childElements}
-      </Masonry>
+      <li key={`font-${font.id}`} className="image-element-class">
+        <img src={image.image_original} />
+      </li>
     );
-  }
-}
+  });
+
+  return (
+    <Masonry
+      className={'my-gallery-class'}
+      elementType={'ul'}
+      options={masonryOptions}
+      disableImagesLoaded={false}
+      updateOnEachImageLoad={false}
+    >
+      {childElements}
+    </Masonry>
+  );
+};
 
 export default Home;
