@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import HomeView from 'Components/Home/index';
+import styled from 'styled-components';
+import MasonryFonts from './MasonryFonts';
+
+const HomeFilters = styled.div``;
+const Container = styled.div``;
 
 class Home extends Component {
   state = {
@@ -13,11 +17,7 @@ class Home extends Component {
   componentDidMount() {
     const { match } = this.props;
     const { authorId, workId } = match.params;
-
     this.setState({ isFetching: true });
-    // const currentAuthorUrl = `${authorUrl}/${authorId}/`;
-    // const currentWorkUrl = `${workUrl}?author=${authorId}`;
-
     const getData = async () => {
       try {
         const response = await fetch('/api/fonts/');
@@ -29,10 +29,16 @@ class Home extends Component {
     };
     getData();
   }
+
   render() {
     const { fonts } = this.state;
     console.log(this.state.fonts);
-    return <HomeView fonts={fonts} />;
+    return (
+      <Container>
+        <HomeFilters />
+        <MasonryFonts fonts={fonts} />
+      </Container>
+    );
   }
 }
 
