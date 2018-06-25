@@ -9,7 +9,7 @@ export default class MasonryFonts extends Component {
       selectFont: null
     };
   }
-  onSelectFont = selectFontId => {
+  handleSelectFont = selectFontId => {
     this.setState({ selectFont: selectFontId });
   };
   render() {
@@ -18,7 +18,7 @@ export default class MasonryFonts extends Component {
     debugger;
     return (
       <div>
-        <MasonryView fonts={fonts} onSelectFont={this.onSelectFont} />
+        <MasonryView fonts={fonts} onSelectFont={this.handleSelectFont} />
         {
           //  <ModalSlider selectFont={selectFont} fonts={fonts}/>
         }
