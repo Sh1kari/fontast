@@ -31,8 +31,10 @@ class Home extends Component {
   }
 
   render() {
-    const { fonts } = this.state;
-    console.log(this.state.fonts);
+    const { fonts, isFetching } = this.state;
+    if (isFetching) {
+      return <div />;
+    }
     return (
       <Container>
         <HomeFilters />

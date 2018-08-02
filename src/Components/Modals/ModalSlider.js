@@ -5,61 +5,66 @@
 
 import React, { Component } from 'react';
 import { findIndex } from 'lodash';
+import autobind from 'react-auto-bind';
+import ModalSliderView from './ModalSliderView';
 
-function getForwardId(fonts, forwardId) {
-  const nextInd = findIndex(fonts, font => font.fontId === forwardId) + 1;
-  return nextInd < fonts.length() ? fonts[nextInd].fontId : null;
+function getForward(fonts, forwardId) {
+  const nextInd = findIndex(fonts, font => font.id === forwardId) + 1;
+  return nextInd < fonts.length ? fonts[nextInd] : null;
 }
 
-function getBackId(fonts, prevId) {
-  const prevInd = findIndex(fonts, font => font.fontId === prevId) - 1;
-  return prevInd > 0 ? fonts[prevInd].fontId : null;
+function getBack(fonts, prevId) {
+  const prevInd = findIndex(fonts, font => font.id === prevId) - 1;
+  return prevInd > 0 ? fonts[prevInd] : null;
 }
 export default class ModalSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prevFontId: null,
-      nextFontId: null,
-      selectFontId: null,
-      isShow: false
+      selectFont: props.selectFont,
+      prevFont: null,
+      nextFont: null
     };
+    autobind(this);
   }
   componentDidMount() {
-    const { fonts, selectId } = this.props;
+    const { fonts, selectFont } = this.props;
     this.setState({
-      prevFontId: getBackId(fonts, selectId),
-      nextFontId: getForwardId(fonts, selectId),
-      selectFontId: null
-    });
-  }
-  handleClose() {
-    this.setState({
-      prevFontId: null,
-      nextFontId: null,
-      selectFontId: null,
-      isShow: false
+      prevFont: getBack(fonts, selectFont.id),
+      nextFont: getForward(fonts, selectFont.id)
     });
   }
   handleForward() {
     const { fonts } = this.props;
-    const { nextFontId, selectFontId } = this.state;
-    this.setState({
-      prevFontId: selectFontId,
-      nextFontId: getForwardId(fonts, nextFontId),
-      selectFontId: nextFontId
+    this.setState(prevState => {
+      return {
+        prevFont: prevState.selectFont,
+        nextFont: getForward(fonts, prevState.nextFont.id),
+        selectFont: prevState.nextFont
+      };
     });
   }
   handleBack() {
     const { fonts } = this.props;
-    const { prevFontId, selectFontId } = this.state;
-    this.setState({
-      prevFontId: getBackId(fonts, prevFontId),
-      nextFontId: selectFontId,
-      selectFontId: prevFontId
+    this.setState(prevState => {
+      return {
+        prevFont: getBack(fonts, prevState.prevFont.id),
+        nextFont: prevState.selectFont,
+        selectFont: prevState.prevFont
+      };
     });
   }
   render() {
-    return <div />;
+    const { onClose } = this.props;
+    const { selectFont, prevFont, nextFont } = this.state;
+    return (
+      <ModalSliderView
+        onClose={onClose}
+        selectFont={selectFont}
+        onBack={this.handleBack}
+        onForward={this.handleForward}
+        sliderControls={{ prevFont, nextFont }}
+      />
+    );
   }
 }

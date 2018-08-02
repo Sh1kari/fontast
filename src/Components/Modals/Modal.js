@@ -1,4 +1,4 @@
-import React, { type ChildrenArray, type Element } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 // import FontAwesome from 'react-fontawesome';
 import Modal from 'react-modal';

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import autobind from 'react-auto-bind';
 import MasonryView from 'Components/Masonry/index';
 import ModalSlider from 'Components/Modals/ModalSlider';
 
@@ -6,22 +7,35 @@ export default class MasonryFonts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectFont: null
+      selectFontId: null
     };
+    autobind(this);
   }
   handleSelectFont = selectFontId => {
-    this.setState({ selectFont: selectFontId });
+    this.setState({ selectFontId });
   };
+  handleClose() {
+    this.setState({
+      // prevFontId: null,
+      // nextFontId: null,
+      selectFontId: null
+      // isShow: false
+    });
+  }
   render() {
     const { fonts } = this.props;
-    const { selectFont } = this.state;
-    debugger;
+    const { selectFontId } = this.state;
+    const selectFont = fonts.find(font => font.id === selectFontId);
     return (
       <div>
         <MasonryView fonts={fonts} onSelectFont={this.handleSelectFont} />
-        {
-          //  <ModalSlider selectFont={selectFont} fonts={fonts}/>
-        }
+        {selectFont && (
+          <ModalSlider
+            fonts={fonts}
+            onClose={this.handleClose}
+            selectFont={selectFont}
+          />
+        )}
       </div>
     );
   }

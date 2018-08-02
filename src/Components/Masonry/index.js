@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { getImg } from '../../helpers/index';
 import './MasonryView.css';
 
-const Container = styled.div``;
 // const LanguageDropDown = styled.div``;
 // const FontLetters = styled.div``;
 // const LettersComponent = styled.div``;
