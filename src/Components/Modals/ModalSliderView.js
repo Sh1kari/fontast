@@ -37,16 +37,15 @@ const ModalSliderView = ({
   onForward,
   onBack
 }) => {
-  console.log('se ', selectFont);
   return (
     <Layout>
       <CloseButton onClick={onClose}>
         <SvgIcon
           svgIcon="modal-close"
           fill="#ffffff"
-          width="80px"
-          height="80px"
-          viewBox="0 0 10 20"
+          width="30px"
+          height="30px"
+          viewBox="0 0 64 64"
         />
       </CloseButton>
       <FontInfo>
@@ -54,9 +53,29 @@ const ModalSliderView = ({
         <div />
       </FontInfo>
       <ControlLayout>
-        {sliderControls.prevFont && <div onClick={onBack}>Left button</div>}
+        {sliderControls.prevFont && (
+          <div onClick={onBack}>
+            <SvgIcon
+              svgIcon="modal-left-arrow"
+              fill="#686868"
+              width="55px"
+              height="30px"
+              viewBox="0 0 31.494 31.494"
+            />
+          </div>
+        )}
         <img src={selectFont.image.image_original} />
-        {sliderControls.nextFont && <div onClick={onForward}>Right button</div>}
+        {sliderControls.nextFont && (
+          <div onClick={onForward}>
+            <SvgIcon
+              svgIcon="modal-right-arrow"
+              fill="#686868"
+              width="55px"
+              height="30px"
+              viewBox="0 0 31.494 31.494"
+            />
+          </div>
+        )}
       </ControlLayout>
     </Layout>
   );
