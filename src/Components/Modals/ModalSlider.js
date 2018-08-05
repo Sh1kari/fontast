@@ -14,12 +14,7 @@ function getBack(fonts, prevId) {
   return prevInd > 0 ? fonts[prevInd] : null;
 }
 
-ModalSlider.propTypes = {
-  fonts: PropTypes.array,
-  onClose: PropTypes.func,
-  selectFont: PropTypes.object
-};
-export default class ModalSlider extends Component {
+class ModalSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,3 +65,11 @@ export default class ModalSlider extends Component {
     );
   }
 }
+
+ModalSlider.propTypes = {
+  fonts: PropTypes.array,
+  onClose: PropTypes.func,
+  selectFont: PropTypes.object
+};
+
+export default ModalSlider;
