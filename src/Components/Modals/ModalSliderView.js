@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import SvgIcon from 'Components/SvgIcon';
 
 const LayoutWrapper = styled.div`
@@ -135,4 +136,19 @@ const ModalSliderView = ({
   );
 };
 
+ModalSliderView.propTypes = {
+  selectFont: PropTypes.shape({
+    author_name: PropTypes.string,
+    likes_count: PropTypes.any,
+    content: PropTypes.string,
+    image: PropTypes.object
+  }),
+  sliderControls: PropTypes.shape({
+    prevFont: PropTypes.bool,
+    nextFont: PropTypes.bool
+  }),
+  onClose: PropTypes.func,
+  onForward: PropTypes.func,
+  onBack: PropTypes.func
+};
 export default ModalSliderView;

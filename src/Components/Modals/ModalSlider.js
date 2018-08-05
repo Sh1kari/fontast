@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { findIndex } from 'lodash';
 import autobind from 'react-auto-bind';
+import PropTypes from 'prop-types';
 import ModalSliderView from './ModalSliderView';
 
 function getForward(fonts, forwardId) {
@@ -12,6 +13,12 @@ function getBack(fonts, prevId) {
   const prevInd = findIndex(fonts, font => font.id === prevId) - 1;
   return prevInd > 0 ? fonts[prevInd] : null;
 }
+
+ModalSlider.propTypes = {
+  fonts: PropTypes.array,
+  onClose: PropTypes.func,
+  selectFont: PropTypes.object
+};
 export default class ModalSlider extends Component {
   constructor(props) {
     super(props);
