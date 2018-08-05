@@ -1,8 +1,3 @@
-//выввод модального окна с указанной картинкой.
-//корректное закрытие
-// добавить прокрутку
-// добавить элементы информации.
-
 import React, { Component } from 'react';
 import { findIndex } from 'lodash';
 import autobind from 'react-auto-bind';

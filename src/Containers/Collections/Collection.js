@@ -35,7 +35,6 @@ const styles = {
 };
 
 const Collection = props => {
-  console.log('props', props);
   const {
     classes,
     name,

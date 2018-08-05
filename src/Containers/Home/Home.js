@@ -15,8 +15,6 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    const { match } = this.props;
-    const { authorId, workId } = match.params;
     this.setState({ isFetching: true });
     const getData = async () => {
       try {

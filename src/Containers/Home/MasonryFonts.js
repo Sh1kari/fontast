@@ -16,10 +16,7 @@ export default class MasonryFonts extends Component {
   };
   handleClose() {
     this.setState({
-      // prevFontId: null,
-      // nextFontId: null,
       selectFontId: null
-      // isShow: false
     });
   }
   render() {

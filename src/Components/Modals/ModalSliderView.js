@@ -25,12 +25,6 @@ const ControlButton = styled.button`
   min-height: 30px;
 `;
 
-const FontInfo = styled.div`
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-`;
 const Layout = styled.div`
   display: flex;
   justify-content: center;
@@ -100,10 +94,6 @@ const ModalSliderView = ({
             viewBox="0 0 64 64"
           />
         </CloseButton>
-        {/* <FontInfo>
-        <div />
-        <div />
-      </FontInfo> */}
         <ControlLayout>
           <ControlButton isVisible={sliderControls.prevFont} onClick={onBack}>
             <SvgIcon
@@ -125,7 +115,7 @@ const ModalSliderView = ({
                 <ImgContent>{content}</ImgContent>
               </InfoRow>
             </ImgInfo>
-            <img src={image.image_original} />
+            <img src={image.image_original} alt="Font pic" />
           </ImgContainer>
           <ControlButton
             isVisible={sliderControls.nextFont}
