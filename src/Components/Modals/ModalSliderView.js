@@ -144,8 +144,8 @@ ModalSliderView.propTypes = {
     image: PropTypes.object
   }),
   sliderControls: PropTypes.shape({
-    prevFont: PropTypes.bool,
-    nextFont: PropTypes.bool
+    prevFont: PropTypes.object,
+    nextFont: PropTypes.object
   }),
   onClose: PropTypes.func,
   onForward: PropTypes.func,
