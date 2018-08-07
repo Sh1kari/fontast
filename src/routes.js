@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './Components/Home/index';
+import Home from './Containers/Home/Home';
 import About from './Components/About';
 import { AddWork, Collections, Authors, Author } from './Containers';
 
@@ -23,7 +23,6 @@ const routes = () => {
       <Route path="/inReview" component={InReview} />
       <Route path="/addWork" component={AddWork} />
       <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
     </Switch>
   );
 };
