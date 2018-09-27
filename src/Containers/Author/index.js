@@ -56,7 +56,7 @@ class Author extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    const { authorId, workId } = match.params;
+    const { authorId } = match.params;
     const currentAuthorUrl = `${authorUrl}/${authorId}/`;
     const currentWorkUrl = `${workUrl}?author=${authorId}`;
 
@@ -104,7 +104,8 @@ class Author extends Component {
             width="16px"
             height="15px"
             viewBox="0 0 100 1024"
-          />&#160;
+          />
+          &#160;
           {likes_count}
           <span className={classes.marginLeft}>{site}</span>
           <a href={facebook} className={classes.marginLeft}>

@@ -60,11 +60,9 @@ class Author extends Component {
     } = this.props;
 
     const authorStyles = [classes.flexSpaceBetween, classes.noWrap].join(' ');
-
-    const { protocol, port, hostname } = window.location;
-    const url = `${protocol}//${hostname}:${port}/media`;
+    // const { protocol, port, hostname } = window.location;
+    // const url = `${protocol}//${hostname}:${port}/media`;
     const wrapperIndexClass = authorIndex % 2 ? 'evenImg' : 'oddImg';
-
     return (
       <Grid item xs={12} md={6} lg={4}>
         <div className={classes.worksWrapper}>
@@ -93,8 +91,10 @@ class Author extends Component {
                 width="16px"
                 height="15px"
                 viewBox="0 0 100 1024"
-              />&#160;
-              {likes_count}&#160;
+              />
+              &#160;
+              {likes_count}
+              &#160;
             </div>
             <hr className={classes.hr} />
 
