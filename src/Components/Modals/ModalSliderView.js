@@ -88,7 +88,7 @@ const ModalSliderView = ({
       <Layout>
         <CloseButton onClick={onClose}>
           <SvgIcon
-            svgIcon="modal-close"
+            svgIcon="close-cross"
             fill="#ffffff"
             width="30px"
             height="30px"

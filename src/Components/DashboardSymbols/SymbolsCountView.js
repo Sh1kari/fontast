@@ -24,7 +24,7 @@ const SymbolLabel = styled.div`
 `;
 const SymbolQuantity = styled.div`
   text-align: center;
-  font-family: PlayfairDisplay;
+  font-family: Playfair Display;
   font-size: 108px;
   font-weight: 900;
   font-style: italic;
@@ -35,16 +35,15 @@ const SymbolQuantity = styled.div`
 `;
 const LabelContainer = styled.div`
   position: relative;
+  width: 275px;
 `;
 
 const SymbolsCountView = ({ symbolsQuantity }) => {
   return (
-    <div>
+    <LabelContainer>
       <SymbolQuantity>{symbolsQuantity}</SymbolQuantity>
-      <LabelContainer>
-        <SymbolLabel>LETTERS</SymbolLabel>
-      </LabelContainer>
-    </div>
+      <SymbolLabel>LETTERS</SymbolLabel>
+    </LabelContainer>
   );
 };
 

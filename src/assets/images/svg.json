@@ -26,7 +26,11 @@
     },
     {
       "order": 0,
-      "name": "modal-close"
+      "name": "close-cross"
+    },
+    {
+      "order": 0,
+      "name": "plus"
     },
     {
       "order": 0,
@@ -82,7 +86,13 @@
       ],
       "width": 100,
       "grid": 0,
-      "tags": ["modal-close"]
+      "tags": ["close-cross"]
+    },
+    {
+      "paths": ["M7 0h3v17H7z"],
+      "width": 100,
+      "grid": 0,
+      "tags": ["plus"]
     },
     {
       "paths": [

@@ -15,21 +15,13 @@ export default class SearchSymbols extends Component {
     super(props);
     autobind(this);
   }
-  handleDelLeftSymbol() {
+
+  handleDeleteSymbol(selectInd) {
     const { selectSymbols, handleSelectSearchSymbol } = this.props;
     handleSelectSearchSymbol(
       selectSymbols
         .split('')
-        .filter((symbol, ind) => ind > 0)
-        .join('')
-    );
-  }
-  handleDelRightSymbol() {
-    const { selectSymbols, handleSelectSearchSymbol } = this.props;
-    handleSelectSearchSymbol(
-      selectSymbols
-        .split('')
-        .filter((symbol, ind, array) => array.length - 1 > ind)
+        .filter((symbol, ind) => ind !== selectInd)
         .join('')
     );
   }
@@ -54,10 +46,13 @@ export default class SearchSymbols extends Component {
             />
           </ContainerCenter>
         )}
-        <DashboardSymbols
-          selectSymbols={selectSymbols}
-          symbolsQuantity={count}
-        />
+        <ContainerCenter>
+          <DashboardSymbols
+            selectSymbols={selectSymbols}
+            symbolsQuantity={count}
+            handleDeleteSymbol={this.handleDeleteSymbol}
+          />
+        </ContainerCenter>
       </div>
     );
   }

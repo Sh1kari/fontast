@@ -35,5 +35,6 @@
     "typescript",
     "typescriptreact",
     "yml"
-  ]
+  ],
+  "standard.enable": false
 }

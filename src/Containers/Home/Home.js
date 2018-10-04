@@ -32,7 +32,7 @@ class Home extends Component {
     isFetching: true,
     dateFilter: false,
     popularFilter: false,
-    selectSymbols: '',
+    selectSymbols: 'fdss',
     fonts: [],
     availableLetters: []
   };
