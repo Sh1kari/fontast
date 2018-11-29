@@ -9,6 +9,8 @@ import Error from '../../Components/Error';
 import Author from './Author';
 import Sorting from './Sorting';
 
+import { fetchUrl } from '../../helpers/Server';
+
 const styles = {
   root: {
     marginTop: '100px',
@@ -31,7 +33,7 @@ const styles = {
   }
 };
 
-const url = '/api/authors/';
+const url = 'api/authors/';
 const sorting = [
   { name: 'likes_count', displayName: 'popular' },
   { name: 'created_at', displayName: 'new' }
@@ -65,9 +67,11 @@ class Authors extends Component {
 
     this.setState({ isFetching: true });
 
-    fetch(currentUrl)
+    fetchUrl(currentUrl)
       .then(data => data.json())
-      .then(authors => this.setState({ authors, isFetching: false }))
+      .then(data => {
+        this.setState({ authors: data.results, isFetching: false });
+      })
       .catch(({ message }) => {
         this.setState({ error: message, isFetching: false });
       });

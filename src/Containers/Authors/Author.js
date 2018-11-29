@@ -68,7 +68,6 @@ class Author extends Component {
         <div className={classes.worksWrapper}>
           <div>
             {last_works.map(({ content, id, image_original }, index) => {
-              console.log('11111', last_works, this.props);
               return (
                 <img
                   key={`${id}-${content}`}

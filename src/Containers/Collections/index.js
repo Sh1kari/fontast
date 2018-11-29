@@ -7,6 +7,8 @@ import Loader from '../../Components/Loader';
 import Error from '../../Components/Error';
 import Collection from './Collection';
 
+import { fetchUrl } from '../../helpers/Server';
+
 const styles = {
   root: {
     marginTop: '100px',
@@ -38,7 +40,7 @@ class Collections extends Component {
   fetch(url) {
     this.setState({ isFetching: true });
 
-    fetch(url)
+    fetchUrl(url)
       .then(data => data.json())
       .then(collections => this.setState({ collections, isFetching: false }))
       .catch(({ message }) => {

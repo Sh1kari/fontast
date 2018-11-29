@@ -121,13 +121,14 @@ class SymbolLabel extends Component {
           if (ind === 0 || symbolsArray.length - 1 === ind) {
             return (
               <SymbolCanDelete
+                key={`${ind}-${symbol}-deleteSymbol`}
                 handleDeleteSymbol={handleDeleteSymbol}
                 ind={ind}
                 symbol={symbolsArray[ind]}
               />
             );
           }
-          return <span>{symbolsArray[ind]}</span>;
+          return <span key={`${ind}-${symbol}-span`}>{symbolsArray[ind]}</span>;
         })}
         <PlusContainerRight>
           <SvgIcon

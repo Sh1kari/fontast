@@ -5,6 +5,8 @@ import { getUnicalSyhmbols, createSearchRequest } from 'helpers';
 import MasonryFonts from './MasonryFonts';
 import SearchSymbols from '../SearchSymbols/SearchSymbols';
 
+import { getUrl } from '../../helpers/Server';
+
 const HomeFilters = styled.div`
   display: flex;
   justify-content: space-between;
@@ -40,8 +42,8 @@ class Home extends Component {
   async componentDidMount() {
     try {
       this.setState({ isFetching: true });
-      const responseFonts = await fetch('/api/fonts/');
-      const responseSymbols = await fetch('/api/symbols/');
+      const responseFonts = await fetch(`${getUrl()}/api/fonts/`);
+      const responseSymbols = await fetch(`${getUrl()}/api/symbols/`);
       const allSymbols = await responseSymbols.json();
       const unicalSymbols = getUnicalSyhmbols(allSymbols.results);
       const allFonts = await responseFonts.json();

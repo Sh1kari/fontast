@@ -6,8 +6,10 @@ import Loader from '../../Components/Loader';
 import Error from '../../Components/Error';
 import SvgIcon from '../../Components/SvgIcon';
 
-const workUrl = '/api/symbols/';
-const authorUrl = '/api/authors';
+import { fetchUrl } from '../../helpers/Server';
+
+const workUrl = 'api/symbols/';
+const authorUrl = 'api/authors';
 
 const styles = {
   root: {
@@ -64,7 +66,7 @@ class Author extends Component {
 
     Promise.all(
       [currentAuthorUrl, currentWorkUrl].map(url =>
-        fetch(url).then(resp => resp.json())
+        fetchUrl(url).then(resp => resp.json())
       )
     )
       .then(([author, works]) =>
@@ -76,8 +78,6 @@ class Author extends Component {
   }
 
   render() {
-    console.log('AUTHOR', this.state);
-
     const { classes } = this.props;
     const { author, error, isFetching } = this.state;
     const { symbols_list = [], name, likes_count, facebook, site } = author;
